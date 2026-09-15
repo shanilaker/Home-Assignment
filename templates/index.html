@@ -4,35 +4,43 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>החנות הקטנה שלנו</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/static/styles.css" />
 </head>
 <body>
   <header>
     <h1>החנות הקטנה שלנו</h1>
-    <nav><a href="orders.html">צפייה בהזמנות (לצד העסק) &larr;</a></nav>
+    <nav><a href="/orders">צפייה בהזמנות (לצד העסק) &larr;</a></nav>
   </header>
 
   <main>
-    <section class="customer-box">
-      <h2>הפרטים שלך (ימולאו אוטומטית בכל הזמנה)</h2>
-      <div class="row">
-        <input type="text" id="customer-name" placeholder="שם מלא" />
-        <input type="tel" id="customer-phone" placeholder="טלפון (לא חובה)" />
-      </div>
-    </section>
-
-    <div id="message-area"></div>
+    {% if message %}<div class="message success">{{ message }}</div>{% endif %}
+    {% if error %}<div class="message error">ההזמנה נכשלה: {{ error }}</div>{% endif %}
 
     <section>
       <h2>המוצרים שלנו</h2>
       <div id="products-grid">
-        <p class="empty-state">טוען מוצרים...</p>
+        {% for p in products %}
+        <div class="product-card">
+          <h3>{{ p.name }}</h3>
+          <p>{{ p.description or "" }}</p>
+          <div class="price">₪{{ "%.2f"|format(p.price) }}</div>
+
+          {% if p.stock and p.stock > 0 %}
+            <div class="stock">במלאי: {{ p.stock }}</div>
+            <form method="post" action="/order" class="order-form">
+              <input type="hidden" name="product_id" value="{{ p.id }}" />
+              <input type="text" name="customer_name" placeholder="שם מלא" required />
+              <input type="tel" name="customer_phone" placeholder="טלפון (לא חובה)" />
+              <input type="number" name="quantity" min="1" max="{{ p.stock }}" value="1" required />
+              <button type="submit">הזמן</button>
+            </form>
+          {% else %}
+            <div class="stock out">אזל מהמלאי</div>
+          {% endif %}
+        </div>
+        {% endfor %}
       </div>
     </section>
   </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabaseClient.js"></script>
-  <script src="app.js"></script>
 </body>
 </html>

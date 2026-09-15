@@ -39,8 +39,9 @@ def home(request: Request, message: Optional[str] = None, error: Optional[str] =
     result = supabase.table("products").select("*").order("id").execute()
     products = result.data
     return templates.TemplateResponse(
+        request,
         "index.html",
-        {"request": request, "products": products, "message": message, "error": error},
+        {"products": products, "message": message, "error": error},
     )
 
 
@@ -75,4 +76,4 @@ def orders_page(request: Request):
         .order("created_at", desc=True)
         .execute()
     )
-    return templates.TemplateResponse("orders.html", {"request": request, "orders": result.data})
+    return templates.TemplateResponse(request, "orders.html", {"orders": result.data})
