@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  margin: 0;
+  padding: 0 16px 40px;
+}
+
+header {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 0 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+nav a {
+  color: #0071e3;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+#products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.product-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.product-card p {
+  margin: 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.product-card .price {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.product-card .stock {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.product-card .stock.out {
+  color: #d0021b;
+  font-weight: 600;
+}
+
+.order-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.order-form input[type="text"],
+.order-form input[type="tel"] {
+  flex: 1 1 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.order-form input[type="number"] {
+  width: 64px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #0071e3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+button:hover {
+  background: #005bb5;
+}
+
+.message {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.message.success {
+  background: #e6f7ec;
+  color: #146c2e;
+}
+
+.message.error {
+  background: #fdecea;
+  color: #b3261e;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  margin-top: 16px;
+}
+
+th, td {
+  padding: 12px 14px;
+  text-align: right;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9rem;
+}
+
+th {
+  background: #fafafa;
+}
+
+.empty-state {
+  text-align: center;
+  color: #777;
+  padding: 24px;
+}

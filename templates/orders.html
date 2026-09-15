@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>הזמנות - צד העסק</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>ההזמנות שהתקבלו</h1>
+    <nav><a href="/">&rarr; חזרה לחנות</a></nav>
+  </header>
+
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>מוצר</th>
+          <th>לקוח</th>
+          <th>טלפון</th>
+          <th>כמות</th>
+          <th>תאריך</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if orders %}
+          {% for o in orders %}
+          <tr>
+            <td>{{ o.id }}</td>
+            <td>{{ o.products.name if o.products else "מוצר נמחק" }}</td>
+            <td>{{ o.customer_name }}</td>
+            <td>{{ o.customer_phone or "-" }}</td>
+            <td>{{ o.quantity }}</td>
+            <td>{{ o.created_at }}</td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr><td colspan="6" class="empty-state">עדיין אין הזמנות.</td></tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </main>
+</body>
+</html>

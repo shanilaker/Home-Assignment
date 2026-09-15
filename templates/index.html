@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>החנות הקטנה שלנו</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>החנות הקטנה שלנו</h1>
+    <nav><a href="orders.html">צפייה בהזמנות (לצד העסק) &larr;</a></nav>
+  </header>
+
+  <main>
+    <section class="customer-box">
+      <h2>הפרטים שלך (ימולאו אוטומטית בכל הזמנה)</h2>
+      <div class="row">
+        <input type="text" id="customer-name" placeholder="שם מלא" />
+        <input type="tel" id="customer-phone" placeholder="טלפון (לא חובה)" />
+      </div>
+    </section>
+
+    <div id="message-area"></div>
+
+    <section>
+      <h2>המוצרים שלנו</h2>
+      <div id="products-grid">
+        <p class="empty-state">טוען מוצרים...</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
